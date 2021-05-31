@@ -1,16 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import SearchResultContainer from "./components/SearchResultContainer";
 
-import Home from "./components/pages/Home";
-
-// import "./App.css";
-
-const App = () => {
-  return (
-    <Router>
-      <Route exact path='/' component={Home} />
-    </Router>
-  );
-};
+function App() {
+  return <SearchResultContainer />;
+}
 
 export default App;
