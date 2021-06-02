@@ -19,6 +19,12 @@ const DataTable = (props) => {
     });
   }, []);
 
+  function filterItems(arr, query) {
+    return arr.filter(function (el) {
+      return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+  }
+
   //
   // let's monitor the props.state.search value and if there is a change let's update the contents of the rendered table
   //
@@ -29,28 +35,22 @@ const DataTable = (props) => {
 
   const filterSearchedData = () => {
     console.log(props.state.search.toLowerCase());
-    // console.log(displayedData);
+    // const newObj = displayedData.map((val) => val.name.first);
     //
     // the intent here is to provide a case insensitive search on the combined first name last name
     // through toLowerCase and .includes.
+    //
 
-    const currentSearchResults = displayedData.filter(function (val) {
-      if (
-        (
-          val.name.first.toLowerCase() +
-          " " +
-          val.name.last.toLowerCase()
-        ).includes(props.state.search.toLowerCase())
-      ) {
-        return true;
-      }
-    });
+    // const currentSearchResults = displayedData.filter(function (val) {
+    //   return val.name.first.toLowerCase() + " " + val.name.last.toLowerCase();
+    //   console.log(concatName);
+    // });
 
     // using filter we should be able to use includes i think to
     // eeee.toLowerCase().includes(props.state.search.toLowerCase())
 
     // str.toLowerCase().includes('Stark'.toLowerCase()); // true
-    console.log(currentSearchResults);
+    // console.log(currentSearchResults);
   };
 
   return (
