@@ -9,8 +9,8 @@ const DataTable = (props) => {
   const [displayedData, setDisplayedData] = useState("");
   const [displayedDataSave, setDisplayedDataSave] = useState("");
   //
-  // the [] means that this function will only get run once, on page load.  like componentDidMount();
-  // this is a good place to run the query
+  // the [] in useEffect means that this function will only get run once, on page load.
+  // like componentDidMount(); this is a good place to run the query
   //
   useEffect(() => {
     axios.get("https://randomuser.me/api/?results=20&nat=US").then((data) => {
@@ -18,6 +18,40 @@ const DataTable = (props) => {
       setDisplayedDataSave(data.data.results);
     });
   }, []);
+
+  //
+  // let's monitor the props.state.search value and if there is a change let's update the contents of the rendered table
+  //
+  useEffect(() => {
+    // console.log(props.state.search);
+    filterSearchedData();
+  }, [props.state.search]);
+
+  const filterSearchedData = () => {
+    console.log(props.state.search.toLowerCase());
+    // console.log(displayedData);
+    //
+    // the intent here is to provide a case insensitive search on the combined first name last name
+    // through toLowerCase and .includes.
+
+    const currentSearchResults = displayedData.filter(function (val) {
+      if (
+        (
+          val.name.first.toLowerCase() +
+          " " +
+          val.name.last.toLowerCase()
+        ).includes(props.state.search.toLowerCase())
+      ) {
+        return true;
+      }
+    });
+
+    // using filter we should be able to use includes i think to
+    // eeee.toLowerCase().includes(props.state.search.toLowerCase())
+
+    // str.toLowerCase().includes('Stark'.toLowerCase()); // true
+    console.log(currentSearchResults);
+  };
 
   return (
     <div>
