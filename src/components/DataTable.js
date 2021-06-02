@@ -19,6 +19,44 @@ const DataTable = (props) => {
     });
   }, []);
 
-  return <div>Hello from DataTable - check state</div>;
+  return (
+    <div>
+      <Table striped bordereed hover>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {displayedData ? (
+            displayedData.map((data) => {
+              return (
+                <tr key={data.login.uuid}>
+                  <td className='d-flex justify-content-center'>
+                    <img alt='Thumbnail' src={data.picture.thumbnail}></img>
+                  </td>
+                  <td>
+                    {data.name.first} {data.name.last}
+                  </td>
+                  <td>{data.phone}</td>
+                  <td>{data.email}</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          )}
+        </tbody>
+      </Table>
+    </div>
+  );
 };
 export default DataTable;
