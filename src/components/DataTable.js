@@ -8,6 +8,8 @@ const DataTable = (props) => {
   //
   const [displayedData, setDisplayedData] = useState("");
   const [displayedDataSave, setDisplayedDataSave] = useState("");
+  const [displayedSortStatus, setDisplayedSortStatus] = useState("Name");
+
   //
   // the [] in useEffect means that this function will only get run once, on page load.
   // like componentDidMount(); this is a good place to run the query
@@ -29,7 +31,12 @@ const DataTable = (props) => {
 
   const filterSearchedData = () => {
     let searchString = props.state.search.toLowerCase();
-    console.log(searchString);
+    //
+    // lets be sure that when there is no text in the search box that the entire dataset is displayed
+    //
+    if (searchString == "") {
+      setDisplayedData(displayedDataSave);
+    }
 
     if (searchString) {
       const searchResults = displayedDataSave.filter((val) => {
@@ -43,13 +50,53 @@ const DataTable = (props) => {
     }
   };
 
+  const sortByName = () => {
+    //
+    // crude - but effective - visual indicator ↓ ↑ on the sort order.
+    // displayedData has what's on screen - so we just need to sort this output
+    //
+
+    const holdMyArray = displayedData;
+
+    if (displayedSortStatus === "Name" || displayedSortStatus === "Name ↓") {
+      setDisplayedSortStatus("Name ↑");
+      holdMyArray.sort(function (a, b) {
+        var nameA = a.name.first.toUpperCase();
+        var nameB = b.name.first.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        // names are equal
+        return 0;
+      });
+    }
+    if (displayedSortStatus === "Name ↑") {
+      setDisplayedSortStatus("Name ↓");
+      holdMyArray.sort(function (a, b) {
+        var nameA = a.name.first.toUpperCase();
+        var nameB = b.name.first.toUpperCase();
+        if (nameA > nameB) {
+          return -1;
+        }
+        if (nameA < nameB) {
+          return 1;
+        }
+        // names are equal
+        return 0;
+      });
+    }
+  };
+
   return (
     <div>
       <Table striped bordereed hover>
         <thead>
           <tr>
             <th>Image</th>
-            <th>Name</th>
+            <th onClick={sortByName}>{displayedSortStatus}</th>
             <th>Phone</th>
             <th>Email</th>
           </tr>
