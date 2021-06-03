@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 
@@ -21,15 +21,7 @@ const DataTable = (props) => {
     });
   }, []);
 
-  //
-  // let's monitor the props.state.search value and if there is a change let's update the contents of the rendered table
-  //
-  useEffect(() => {
-    // console.log(props.state.search);
-    filterSearchedData();
-  }, [props.state.search]);
-
-  const filterSearchedData = () => {
+  const filterSearchedData = useCallback(() => {
     let searchString = props.state.search.toLowerCase();
     //
     // lets be sure that when there is no text in the search box that the entire dataset is displayed
@@ -45,10 +37,17 @@ const DataTable = (props) => {
         if (firstNameLastName.includes(searchString)) {
           return true;
         }
+        return null;
       });
       setDisplayedData(searchResults);
     }
-  };
+  }, [props.state.search, setDisplayedData, displayedDataSave]);
+  //
+  // let's monitor the props.state.search value and if there is a change let's update the contents of the rendered table
+  //
+  useEffect(() => {
+    filterSearchedData();
+  }, [props.state.search, filterSearchedData]);
 
   const sortByName = () => {
     //
