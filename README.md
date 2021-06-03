@@ -11,6 +11,16 @@ The primary objective of this exercise was to be an introduction to React
 - introduction to Components, Hooks and State
 - github repo management
 
+The key features of this application
+
+1. Basic Single Page React Application
+2. API fetch from Random User
+3. Render contents in a table
+4. Provide for a Search capability
+5. Provide for a Sort capability on at least one column
+
+For this implementation, the column sort capability is implemented on the Name field
+
 # Links
 
 | Description | Link                                                             |
