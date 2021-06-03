@@ -34,7 +34,7 @@ const DataTable = (props) => {
     //
     // lets be sure that when there is no text in the search box that the entire dataset is displayed
     //
-    if (searchString == "") {
+    if (searchString === "") {
       setDisplayedData(displayedDataSave);
     }
 
@@ -92,7 +92,7 @@ const DataTable = (props) => {
 
   return (
     <div>
-      <Table striped bordereed hover>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Image</th>

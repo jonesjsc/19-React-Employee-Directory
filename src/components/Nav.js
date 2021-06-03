@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
+// import Nav2 from "react-bootstrap/Nav";
 
 const Nav = (props) => {
   return (
@@ -15,6 +16,9 @@ const Nav = (props) => {
           />{" "}
           Employee Directory - My First React App
         </Navbar.Brand>
+        {/* <Nav2>
+          <Nav2.Link href='/about'>About</Nav2.Link>
+        </Nav2> */}
       </Navbar>
     </div>
   );
