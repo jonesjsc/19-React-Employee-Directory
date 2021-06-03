@@ -23,7 +23,7 @@ For this implementation, the column sort capability is implemented on the Name f
 
 # Links
 
-| Description | Link                                                             |
-| ----------- | ---------------------------------------------------------------- |
-| github repo | https://github.com/jonesjsc/19-React-Employee-Directory          |
-| deployment  | https://60b842903af0e90007ed41d4--eager-cray-b352da.netlify.app/ |
+| Description | Link                                                    |
+| ----------- | ------------------------------------------------------- |
+| github repo | https://github.com/jonesjsc/19-React-Employee-Directory |
+| deployment  | https://eager-cray-b352da.netlify.app/                  |
